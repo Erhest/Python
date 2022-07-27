@@ -16,17 +16,11 @@ while(continuar):
 '''
 palavras = ['Casa', 'Carro', 'Aviao', 'Moto', 'Mesa', 'Cadeira', 'Teto', 'Casarao', 'Terreno', 'Escola', 'Curso', 'Musica', 'Montanha', 'Piscina', 'Pia', 'Porto', 'Pa', 'Padaria', 'Empresa', 'Ilha', 'Televisao', 'Radio', 'Rua', 'Planta', 'Arvore', 'Portao', 'Computador', 'Escada', 'Sofa']
 
-indice = randint(0, len(palavras)) # recebe um numero aleatório entre a quantidade total de palavras da lista
-palavra_secreta = palavras[indice] # Palavra do jogo
+indice = '' # recebe um numero aleatório entre a quantidade total de palavras da lista
+palavra_secreta = [] # Palavra do jogo
 tentativa = []  # Lista da Palavra _ _ _ _ _
 chutes = [] # Lista de chutes errados -> W, S, F, G
 
-
-for i in range(len(palavra_secreta)):
-    tentativa.append('_')
-
-print(palavra_secreta)
-print(tentativa)
 
 def exibirMsg(msg):
     print(msg)
@@ -40,9 +34,9 @@ def encontraLetra(chute):
     return temLetra
 
 def jogar():
+    tentativas = 5
     while(True):
-        chute = input('Digite uma letra R: ')
-        tentativas = 5
+        chute = input('Digite uma letra R: ')        
         if(encontraLetra(chute)):
             exibirMsg(tentativa)
         else:
@@ -52,16 +46,40 @@ def jogar():
             tentativas -= 1
             exibirMsg(f'Restam {tentativas} tentativas.')
             exibirMsg(tentativa)
+        if(verificaVitoria()):
+            exibirMsg('Parabéns você VENCEU!!!')
+            break
         if(tentativas <= 0):
             exibirMsg('VOCÊ PERDEU; \n JOGUE NOVAMENTE! ')
             exibirMsg(f'A palavra secreta era {palavra_secreta.upper()} !!!')
             break
 
-while(True):
-    exibirMsg('**** JOGO DA FORCA ****')
-    menu = int(input(' 1 - Jogar \n 2 - Sair \n R: '))
-    if(menu == 1):
-        jogar()
+def verificaVitoria():
+    if('_' in tentativa):
+        return False
     else:
-        exibirMsg('Tchauu!!!!')        
-        break
+        return True
+
+def iniciaJogo():
+    global indice
+    indice = randint(0, len(palavras)) # recebe um numero aleatório entre a quantidade total de palavras da lista
+    global palavra_secreta
+    palavra_secreta = palavras[indice] # Palavra do jogo
+    global tentativa
+    tentativa = []  # Lista da Palavra _ _ _ _ _
+    global chutes
+    chutes = [] # Lista de chutes errados -> W, S, F, G
+
+    for i in range(len(palavra_secreta)):
+        tentativa.append('_')
+def escolha():
+    while(True):
+        iniciaJogo()
+        exibirMsg('**** JOGO DA FORCA ****')
+        menu = int(input(' 1 - Jogar \n 2 - Sair \n R: '))
+        if(menu == 1):
+            jogar()
+        else:
+            exibirMsg('Tchauu!!!!')        
+            break
+escolha()
