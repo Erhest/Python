@@ -28,7 +28,7 @@ def exibirMsg(msg):
 def encontraLetra(chute):
     temLetra = False
     for i, letra in enumerate(palavra_secreta):
-        if (chute.upper() == letra.upper()):
+        if(chute.upper() == letra.upper()):
             tentativa[i] = chute.upper()
             temLetra = True
     return temLetra
@@ -72,6 +72,7 @@ def iniciaJogo():
 
     for i in range(len(palavra_secreta)):
         tentativa.append('_')
+        
 def escolha():
     while(True):
         iniciaJogo()
