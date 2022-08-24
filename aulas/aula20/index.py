@@ -73,6 +73,4 @@ while(True):
         print('Finalizando programa........')
         break
 
-p.nome = input('Digite o nome do produto: ')
-p.preco = (input('Digite o preço do produto: '))
-p.listarProduto()
+
