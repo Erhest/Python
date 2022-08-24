@@ -14,3 +14,24 @@
     + public
     # protected
     - private
+
+# CLiente
+    - codigo
+    + nome
+    + sexo
+    + telefone
+    + endereço
+
++ gerar_codigo_usuario()
++ atualizar_endereco()
++ atualizar_telefone()
++ listar_clientes()
+
+# Funcionario
+    - codigo
+    + nome
+    + sexo
+    + telefone
+    + endereço
+    + horas_trabalhadas
+    - salario
