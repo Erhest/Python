@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classes e instâncias</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="shortcut icon" href="assets - img/python.jpg" type="image/x-icon">
+</head>
+<body>
+    <nav>
+        <a href="main.html">Página Principal</a>
+        <a href="classes.html">Classes e Instâncias</a>
+        <a href="encapsulamento.html">Encapsulamentos</a>
+        <a href="poo.html">POO</a>
+    </nav>
+    <main>
+
+        <h2>Encapsulamento</h2>
+            <p>
+                Todas as vezes que eu quiser cadastrar um livro eu terei que instanciá-lo, pegar uma conexão, salvar o livro e fechar a conexão. Vamos supor que agora nós precisamos verificar se o livro já existe no banco e, caso exista, precisamos atualizar em vez de salvar: 
+            </p>
+
+            <h5>Livro livro = new Livro("Java", 27.83);</h5>
+            <h5>Conexao conexao = pegaConexaoComOBancoDeDados();</h5>
+            <h5>if(!conexao.existeLivro(livro)){ </h5>
+            <h5>conexao.cadastraLivro(livro); </h5>
+            <h5>} else{</h5>
+            <h5>conexao.atualizaLivro(livro); </h5>
+            <h5>}</h5>
+            <h5>conexao.fechaConexao();</h5>
+
+            <p>
+                Quanto mais procedimentos para poder salvar o livro eu precisar, maior ficará a minha rotina de salvar livros. Imagine todas as classes que precisarem salvar um livro, terão que ser atualizadas todas as vezes que houver uma mudança! É uma péssima solução... Que tal mudarmos esse procedimento de salvar o livro para um único método? Então, ficaria:
+            </p>
+                
+            <h5>Livro livro = new Livro("Java", 27.83);</h5>
+            <h5>salvaLivro(livro);</h5>
+            <h5>public void salvaLivro(Livro livro){</h5>
+            <h5>Conexao conexao = pegaConexaoComOBancoDeDados();</h5>
+            <h5>if(!conexao.existeLivro(livro)){</h5>
+            <h5>conexao.cadastraLivro(livro);</h5>
+            <h5>} else{ </h5>
+            <h5>conexao.atualizaLivro(livro); </h5>
+            <h5>} </h5>
+            <h5>conexao.fechaConexao(); </h5>
+            <h5>}</h5>
+                
+            <p>
+                Agora não precisamos saber sobre conexão ou qualquer procedimento para salvar um livro, apenas chamamos o método salvaLivro(), enviamos o livro, e ele faz tudo por nós! Quando transformamos um procedimento que apresenta muitas regras de negócio ou rotinas complexas em um método, chamamos isso de encapsulamento. E se tivermos que fazer um backup dos livros cada vez que salvar ou atualizar? Bastaria adicionar esse trecho em um único lugar, ou seja, no método salvaLivro():
+            </p>
+            <h5>//continuo usando o salvaLivro() do mesmo jeito salvaLivro(livro);</h5>    
+            <h5>public void salvaLivro(Livro livro){</h5>    
+            <h5>//rotina para salvar livro </h5>    
+            <h5>conexao.fazBackupDoLivro(); </h5>    
+            <h5>conexao.fechaConexao(); }</h5>    
+                    
+            <p>
+                O código mudou e continuamos utilizando o método sem nenhuma preocupação se ele mudou ou não! Além disso, o código foi modificado em apenas um lugar, ou seja, não precisamos nos preocupar se vai quebrar o nosso sistema em todos os outros lugares que usam esse método! Além de ser mais elegante, torna o nosso sistema manutenível.
+                
+                É sempre importante verificar em todos os pontos do código aonde é possível aplicar o encapsulamento, pois ganhamos muitos benefícios:
+                
+                Melhor manutenção de código.
+                Divisão de responsabilidades.
+                Reutilização de código.
+            </p>
+            
+    </main>
+    <footer class="topo">
+        https://www.alura.com.br/artigos/o-que-e-encapsulamento?gclid=CjwKCAjwyaWZBhBGEiwACslQo_qVQh2Job9_isaQhLiAD7C0ieRIr3wFg13oc09jqdi2DC6BSbTPxxoCT6QQAvD_BwE
+    </footer>
+</body>
+</html>
